@@ -1,0 +1,338 @@
+
+/* =====================================
+   GENERAL STYLES
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f7f2;
+    color: #1b4332;
+    padding: 30px 20px;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+header {
+    position: relative;
+    text-align: center;
+    padding: 35px 20px;
+    background: linear-gradient(135deg, #14532d, #059669);
+    color: white;
+    border-radius: 18px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 16px;
+    color: #d1fae5;
+}
+
+/* LANGUAGE SELECTOR */
+
+.language-selector {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.language-selector select {
+    width: auto;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background: white;
+    color: #14532d;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
+
+main {
+    max-width: 750px;
+    margin: auto;
+}
+
+/* CARDS */
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 25px;
+}
+
+.card h2 {
+    color: #166534;
+    margin-bottom: 25px;
+    font-size: 23px;
+}
+
+/* =====================================
+   FORM
+===================================== */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 9px;
+    color: #245b40;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5d0;
+    border-radius: 10px;
+    font-size: 15px;
+    background: #f9fcfa;
+    color: #1b4332;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #059669;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #047857;
+    transform: translateY(-2px);
+}
+
+.print-button {
+    background: #14532d;
+    margin-top: 15px;
+}
+
+.print-button:hover {
+    background: #166534;
+}
+
+/* =====================================
+   RESULTS
+===================================== */
+
+.result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.result-card {
+    background: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.result-card h3 {
+    font-size: 15px;
+    color: #166534;
+    margin-bottom: 15px;
+}
+
+.result-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #059669;
+}
+
+.result-description {
+    font-size: 13px;
+    color: #527565;
+    margin-top: 8px;
+}
+
+/* =====================================
+   REPORT DETAILS
+===================================== */
+
+.report-details {
+    margin-top: 22px;
+    padding: 20px;
+    background: #f0fdf4;
+    border-radius: 12px;
+    border: 1px solid #bbf7d0;
+}
+
+.report-details h3 {
+    color: #166534;
+    margin-bottom: 15px;
+}
+
+.report-details p {
+    margin: 10px 0;
+    color: #245b40;
+    font-size: 14px;
+}
+
+.report-details strong {
+    color: #14532d;
+}
+
+.report-date {
+    margin-top: 15px !important;
+    font-size: 12px !important;
+    color: #6b8f7a !important;
+}
+
+/* =====================================
+   INFORMATION NOTE
+===================================== */
+
+.note {
+    background: #f0fdf4;
+    border-left: 4px solid #059669;
+    padding: 15px;
+    border-radius: 8px;
+    color: #527565;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #6b8f7a;
+    font-size: 13px;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 550px) {
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .language-selector {
+        position: static;
+        margin-bottom: 20px;
+    }
+
+}
+
+/* =====================================
+   PRINT / PDF STYLES
+===================================== */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 20mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+        color: #1b4332;
+    }
+
+    header {
+        background: #14532d !important;
+        color: white !important;
+        border-radius: 0;
+        margin-bottom: 25px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .language-selector,
+    #calculator,
+    .note,
+    footer,
+    .print-button {
+        display: none !important;
+    }
+
+    main {
+        max-width: 100%;
+    }
+
+    #results {
+        display: block !important;
+        box-shadow: none;
+        border: 1px solid #d1e7d8;
+        border-radius: 12px;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .result-card,
+    .report-details {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    button {
+        display: none !important;
+    }
+}
