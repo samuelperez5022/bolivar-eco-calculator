@@ -1,76 +1,258 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bolívar Eco-Calculator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f7f2;
+            color: #1b4332;
+            padding: 30px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px;
+            background: linear-gradient(135deg, #14532d, #059669);
+            color: white;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 16px;
+            color: #d1fae5;
+        }
+
+        main {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #166534;
+            margin-bottom: 25px;
+            font-size: 23px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 9px;
+            color: #245b40;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5d0;
+            border-radius: 10px;
+            font-size: 15px;
+            background: #f9fcfa;
+            color: #1b4332;
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #059669;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #047857;
+            transform: translateY(-2px);
+        }
+
+        #results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .result-card {
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .result-card h3 {
+            font-size: 15px;
+            color: #166534;
+            margin-bottom: 15px;
+        }
+
+        .result-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #059669;
+        }
+
+        .result-description {
+            font-size: 13px;
+            color: #527565;
+            margin-top: 8px;
+        }
+
+        .note {
+            background: #f0fdf4;
+            border-left: 4px solid #059669;
+            padding: 15px;
+            border-radius: 8px;
+            color: #527565;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6b8f7a;
+            font-size: 13px;
+        }
+
+        @media (max-width: 550px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            #results {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
     <header>
         <h1>Bolívar Eco-Calculator</h1>
-        <p>Calcula tu impacto ambiental semanal en el Colegio Bolívar.</p>
+        <p>Calculate your environmental impact and make a difference!</p>
     </header>
 
     <main>
-        <h2>Calculadora de impacto ambiental</h2>
 
-        <form id="ecoForm">
+        <section class="card">
+            <h2>🌱 Environmental Calculator</h2>
 
-            <label for="transport">Medio de transporte:</label>
-            <select id="transport" required>
-                <option value="">Selecciona una opción</option>
-                <option value="bus">Bus</option>
-                <option value="private">Carro privado</option>
-                <option value="shared">Carro compartido</option>
-                <option value="bike">Bicicleta / Caminando</option>
-            </select>
+            <form id="ecoForm">
 
-            <br><br>
+                <div class="form-group">
+                    <label for="transport">Transportation to School</label>
+                    <select id="transport" required>
+                        <option value="">Select transportation</option>
+                        <option value="bus">Bus</option>
+                        <option value="private">Private Car</option>
+                        <option value="shared">Shared Car</option>
+                        <option value="bike">Bicycle / Walking</option>
+                    </select>
+                </div>
 
-            <label for="paper">Hojas de papel utilizadas diariamente:</label>
-            <input type="number" id="paper" min="0" value="0" required>
+                <div class="form-group">
+                    <label for="paper">Daily Paper Consumption (sheets)</label>
+                    <input
+                        type="number"
+                        id="paper"
+                        min="0"
+                        step="1"
+                        value="0"
+                        required
+                    >
+                </div>
 
-            <br><br>
+                <div class="form-group">
+                    <label for="recycling">Recycling Level</label>
+                    <select id="recycling" required>
+                        <option value="">Select recycling level</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
 
-            <label for="recycling">Nivel de reciclaje:</label>
-            <select id="recycling" required>
-                <option value="">Selecciona una opción</option>
-                <option value="low">Bajo</option>
-                <option value="medium">Medio</option>
-                <option value="high">Alto</option>
-            </select>
+                <button type="submit">
+                    Calculate My Environmental Impact
+                </button>
 
-            <br><br>
-
-            <button type="submit">Calcular impacto ambiental</button>
-
-        </form>
-
-        <section id="results" hidden>
-            <h2>Resultados semanales</h2>
-
-            <p>
-                CO2 producido:
-                <strong id="co2Result"></strong> kg
-            </p>
-
-            <p>
-                Eco-Points:
-                <strong id="pointsResult"></strong>
-            </p>
+            </form>
         </section>
 
-        <p>
-            <small>
-                Nota: Los resultados son estimaciones aproximadas.
-                Se utilizan valores promedio para representar el impacto
-                ambiental del transporte, el consumo de papel y el reciclaje.
-            </small>
-        </p>
+        <section class="card" id="results" hidden>
+
+            <div class="result-card">
+                <h3>Weekly CO₂ Emissions</h3>
+                <div class="result-value" id="co2Result">0</div>
+                <p class="result-description">Kilograms of CO₂</p>
+            </div>
+
+            <div class="result-card">
+                <h3>Eco-Points</h3>
+                <div class="result-value" id="pointsResult">0</div>
+                <p class="result-description">Your environmental score</p>
+            </div>
+
+        </section>
+
+        <section class="note">
+            <strong>Important:</strong> All results are educational estimates.
+            CO₂ emissions are calculated using simplified average values
+            for transportation, paper consumption and recycling.
+            Actual environmental impacts may vary.
+        </section>
 
     </main>
+
+    <footer>
+        <p>Bolívar Eco-Calculator | Colegio Bolívar</p>
+        <p>Small actions create a greener future.</p>
+    </footer>
 
     <script>
         const form = document.getElementById("ecoForm");
@@ -78,12 +260,17 @@
         form.addEventListener("submit", function(event) {
             event.preventDefault();
 
-            // Obtener los valores ingresados
             const transport = document.getElementById("transport").value;
             const paper = Number(document.getElementById("paper").value);
             const recycling = document.getElementById("recycling").value;
 
-            // Valores estimados de CO2 por semana (kg)
+            if (!transport || !recycling || paper < 0 ||
+                !Number.isInteger(paper)) {
+                alert("Please enter valid information.");
+                return;
+            }
+
+            // Estimated weekly transportation CO2 (kg)
             const transportCO2 = {
                 bus: 10,
                 private: 25,
@@ -91,28 +278,27 @@
                 bike: 0
             };
 
-            // Emisiones estimadas por hoja de papel (kg CO2)
+            // Estimated CO2 per sheet of paper
             const paperCO2 = 0.005;
 
-            // Calcular emisiones semanales de papel
+            // Weekly paper emissions (5 school days)
             const weeklyPaperCO2 = paper * 5 * paperCO2;
 
-            // Calcular emisiones totales
+            // Total weekly emissions
             let totalCO2 = transportCO2[transport] + weeklyPaperCO2;
 
-            // Reducción estimada por nivel de reciclaje
+            // Recycling reduction
             const recyclingReduction = {
                 low: 0,
                 medium: 0.10,
                 high: 0.20
             };
 
-            totalCO2 = totalCO2 * (1 - recyclingReduction[recycling]);
+            totalCO2 *= (1 - recyclingReduction[recycling]);
 
-            // Calcular Eco-Points
+            // Calculate Eco-Points
             let ecoPoints = 100;
 
-            // Bonificación por transporte sostenible
             if (transport === "bike") {
                 ecoPoints += 50;
             } else if (transport === "bus") {
@@ -121,20 +307,17 @@
                 ecoPoints += 20;
             }
 
-            // Bonificación por reciclaje
             if (recycling === "high") {
                 ecoPoints += 30;
             } else if (recycling === "medium") {
                 ecoPoints += 15;
             }
 
-            // Penalización por consumo de papel
             ecoPoints -= Math.floor(paper * 0.5);
 
-            // Evitar puntajes negativos
             ecoPoints = Math.max(0, ecoPoints);
 
-            // Mostrar resultados
+            // Display results
             document.getElementById("co2Result").textContent =
                 totalCO2.toFixed(2);
 
