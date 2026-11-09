@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolívar Eco-Calculator</title>
+</head>
+<body>
+
+    <header>
+        <h1>Bolívar Eco-Calculator</h1>
+        <p>Calcula tu impacto ambiental semanal en el Colegio Bolívar.</p>
+    </header>
+
+    <main>
+        <h2>Calculadora de impacto ambiental</h2>
+
+        <form id="ecoForm">
+
+            <label for="transport">Medio de transporte:</label>
+            <select id="transport" required>
+                <option value="">Selecciona una opción</option>
+                <option value="bus">Bus</option>
+                <option value="private">Carro privado</option>
+                <option value="shared">Carro compartido</option>
+                <option value="bike">Bicicleta / Caminando</option>
+            </select>
+
+            <br><br>
+
+            <label for="paper">Hojas de papel utilizadas diariamente:</label>
+            <input type="number" id="paper" min="0" value="0" required>
+
+            <br><br>
+
+            <label for="recycling">Nivel de reciclaje:</label>
+            <select id="recycling" required>
+                <option value="">Selecciona una opción</option>
+                <option value="low">Bajo</option>
+                <option value="medium">Medio</option>
+                <option value="high">Alto</option>
+            </select>
+
+            <br><br>
+
+            <button type="submit">Calcular impacto ambiental</button>
+
+        </form>
+
+        <section id="results" hidden>
+            <h2>Resultados semanales</h2>
+
+            <p>
+                CO2 producido:
+                <strong id="co2Result"></strong> kg
+            </p>
+
+            <p>
+                Eco-Points:
+                <strong id="pointsResult"></strong>
+            </p>
+        </section>
+
+        <p>
+            <small>
+                Nota: Los resultados son estimaciones aproximadas.
+                Se utilizan valores promedio para representar el impacto
+                ambiental del transporte, el consumo de papel y el reciclaje.
+            </small>
+        </p>
+
+    </main>
+
+    <script>
+        const form = document.getElementById("ecoForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Obtener los valores ingresados
+            const transport = document.getElementById("transport").value;
+            const paper = Number(document.getElementById("paper").value);
+            const recycling = document.getElementById("recycling").value;
+
+            // Valores estimados de CO2 por semana (kg)
+            const transportCO2 = {
+                bus: 10,
+                private: 25,
+                shared: 12.5,
+                bike: 0
+            };
+
+            // Emisiones estimadas por hoja de papel (kg CO2)
+            const paperCO2 = 0.005;
+
+            // Calcular emisiones semanales de papel
+            const weeklyPaperCO2 = paper * 5 * paperCO2;
+
+            // Calcular emisiones totales
+            let totalCO2 = transportCO2[transport] + weeklyPaperCO2;
+
+            // Reducción estimada por nivel de reciclaje
+            const recyclingReduction = {
+                low: 0,
+                medium: 0.10,
+                high: 0.20
+            };
+
+            totalCO2 = totalCO2 * (1 - recyclingReduction[recycling]);
+
+            // Calcular Eco-Points
+            let ecoPoints = 100;
+
+            // Bonificación por transporte sostenible
+            if (transport === "bike") {
+                ecoPoints += 50;
+            } else if (transport === "bus") {
+                ecoPoints += 30;
+            } else if (transport === "shared") {
+                ecoPoints += 20;
+            }
+
+            // Bonificación por reciclaje
+            if (recycling === "high") {
+                ecoPoints += 30;
+            } else if (recycling === "medium") {
+                ecoPoints += 15;
+            }
+
+            // Penalización por consumo de papel
+            ecoPoints -= Math.floor(paper * 0.5);
+
+            // Evitar puntajes negativos
+            ecoPoints = Math.max(0, ecoPoints);
+
+            // Mostrar resultados
+            document.getElementById("co2Result").textContent =
+                totalCO2.toFixed(2);
+
+            document.getElementById("pointsResult").textContent =
+                ecoPoints;
+
+            document.getElementById("results").hidden = false;
+        });
+    </script>
+
+</body>
+</html>
